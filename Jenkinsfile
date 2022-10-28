@@ -10,20 +10,16 @@ pipeline {
     stage(' docker image build and push to p-registry ') {
       steps {
         sh '''
-	docker build -t 192.168.8.100:5000/web:green .
-	docker push 192.168.8.100:5000/web:green
+	docker build -t 192.168.8.100:5000/web:blue2 .
+	docker push 192.168.8.100:5000/web:blue2
 	'''
       }
     }
 
-    stage(' create deployment, svc ') {
-      steps {
-        sh '''
-	kubectl apply -f green.yaml
-	'''
-      }
+    stage(' update deployment image ') {
+      sh '''
+      kubectl set image deployment/nginx-deployment blue=192.168.8.100:5000/web:blue2
+      '''
     }
   }
 }
-
-

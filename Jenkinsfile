@@ -17,9 +17,11 @@ pipeline {
     }
 
     stage(' update deployment image ') {
-      sh '''
-      kubectl set image deployment/web-blue blue=192.168.8.100:5000/web:blue2
-      '''
+      steps {
+        sh '''
+        kubectl set image deployment/web-blue blue=192.168.8.100:5000/web:blue2
+        '''
+      }
     }
   }
 }

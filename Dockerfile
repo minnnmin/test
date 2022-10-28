@@ -1,2 +1,2 @@
 FROM nginx
-ADD green.html /usr/share/nginx/html/index.html
+ADD blue.html /usr/share/nginx/html/index.html
